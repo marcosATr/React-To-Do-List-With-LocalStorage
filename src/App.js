@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 
 export default function App() {
-  let currentStorage = JSON.parse(localStorage.getItem('Tasks'));
+  const currentStorage = JSON.parse(localStorage.getItem('Tasks'));
   //console.log(currentStorage);
   const tasks = () => {
     if (currentStorage) {
@@ -65,7 +65,7 @@ export default function App() {
         </ul>
       </div>
       <div>
-        <form action="" className="">
+        <form>
           <input
             type="text"
             value={currentItem}
