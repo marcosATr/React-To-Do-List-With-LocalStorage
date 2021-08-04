@@ -1,6 +1,6 @@
 # REACT TO-DO LIST COM LOCALSTORAGE
 
-Exercício de fixação de react com hooks.
+Praticando o uso de hooks.
 
 ![Meu to-do](https://i.imgur.com/A73LoTB.png)
 
