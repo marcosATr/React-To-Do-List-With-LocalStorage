@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import './style.css';
 
 export default function App() {
@@ -13,18 +13,35 @@ export default function App() {
   };
   const [taskList, setTaskList] = useState(tasks);
   const [currentItem, setCurrentItem] = useState('');
-
+  
   const logNewItem = e => {
     setCurrentItem(e.target.value);
-    //console.log(currentItem);
+    
   };
-  const save = e => {
+  
+  console.log(`fora: ${currentItem}`);
+  const save = useCallback((e)=>{
     e.preventDefault();
     if (currentItem) {
+      console.log(`dentro: ${currentItem}`);
       setTaskList([...taskList, currentItem]);
       setCurrentItem('');
     }
-  };
+  }, [currentItem])
+  
+  //marcos
+  // useEffect(()=>{
+  //   return setCurrentItem(currentItem)
+  // },[taskList])
+  //fim
+
+  // const save = e => {
+  //   e.preventDefault();
+  //   if (currentItem) {
+  //     setTaskList([...taskList, currentItem]);
+  //     setCurrentItem('');
+  //   }
+  // };
   const deleteItem = e => {
     //find index
     const searchParam = e.target.name;
