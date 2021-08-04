@@ -3,7 +3,7 @@ import './style.css';
 
 export default function App() {
   let currentStorage = JSON.parse(localStorage.getItem('Tasks'));
-  console.log(currentStorage);
+  //console.log(currentStorage);
   const tasks = () => {
     if (currentStorage) {
       return currentStorage;
@@ -16,7 +16,7 @@ export default function App() {
 
   const logNewItem = e => {
     setCurrentItem(e.target.value);
-    console.log(currentItem);
+    //console.log(currentItem);
   };
   const save = e => {
     e.preventDefault();
@@ -25,6 +25,16 @@ export default function App() {
       setCurrentItem('');
     }
   };
+  const deleteItem = e => {
+    //find index
+    const searchParam = e.target.name;
+    const deleteFilter = p => p == searchParam;
+    const thisIndex = taskList.findIndex(deleteFilter);
+    console.log(thisIndex);
+    const newArr = [...taskList];
+    newArr.splice(thisIndex, 1);
+    setTaskList(newArr);
+  };
   //save on localstorage
   const saveOnLocalStorage = () => {
     localStorage.setItem('Tasks', JSON.stringify(taskList));
@@ -32,13 +42,25 @@ export default function App() {
   useEffect(() => {
     saveOnLocalStorage();
   }, [taskList]);
+
   return (
-    <div>
+    <div className="main">
       <div className="tasklist">
         <h1>React To-do list</h1>
         <ul>
           {taskList.map((task, i) => (
-            <li key={i}>{task}</li>
+            <li key={i}>
+              {task}{' '}
+              <button
+                className="button"
+                name={task}
+                onClick={e => {
+                  deleteItem(e);
+                }}
+              >
+                Concluir
+              </button>
+            </li>
           ))}
         </ul>
       </div>
@@ -53,6 +75,7 @@ export default function App() {
           />
           <input
             type="submit"
+            className="button"
             value="Salvar"
             onClick={e => {
               save(e);
