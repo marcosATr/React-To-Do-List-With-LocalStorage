@@ -6,15 +6,17 @@ body {
 }
 .main {
   margin-inline: auto;
-  width: max-content;
   background: #2d3e50;
   padding: 1rem 2rem;
-  max-width: 450px;
+  width: 450px;
 }
 .main h1 {
   color: #d2dde8;
   text-transform: uppercase;
   font-weight: 900;
+}
+.main p {
+  color: #d2dde8;
 }
 .main ul {
   padding: 0;

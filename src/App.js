@@ -13,41 +13,30 @@ export default function App() {
   };
   const [taskList, setTaskList] = useState(tasks);
   const [currentItem, setCurrentItem] = useState('');
-  
+
   const logNewItem = e => {
     setCurrentItem(e.target.value);
-    
   };
-  
-  console.log(`fora: ${currentItem}`);
-  const save = useCallback((e)=>{
-    e.preventDefault();
-    if (currentItem) {
-      console.log(`dentro: ${currentItem}`);
-      setTaskList([...taskList, currentItem]);
-      setCurrentItem('');
-    }
-  }, [currentItem])
-  
-  //marcos
-  // useEffect(()=>{
-  //   return setCurrentItem(currentItem)
-  // },[taskList])
-  //fim
 
-  // const save = e => {
-  //   e.preventDefault();
-  //   if (currentItem) {
-  //     setTaskList([...taskList, currentItem]);
-  //     setCurrentItem('');
-  //   }
-  // };
+  console.log(`fora: ${currentItem}`);
+  const save = useCallback(
+    e => {
+      e.preventDefault();
+      if (currentItem) {
+        //console.log(`dentro: ${currentItem}`);
+        setTaskList([...taskList, currentItem]);
+        setCurrentItem('');
+      }
+    },
+    [currentItem]
+  );
+
   const deleteItem = e => {
     //find index
     const searchParam = e.target.name;
     const deleteFilter = p => p == searchParam;
     const thisIndex = taskList.findIndex(deleteFilter);
-    console.log(thisIndex);
+    //console.log(thisIndex);
     const newArr = [...taskList];
     newArr.splice(thisIndex, 1);
     setTaskList(newArr);
@@ -60,10 +49,13 @@ export default function App() {
     saveOnLocalStorage();
   }, [taskList]);
 
+  const numberofTasks = useMemo(()=> taskList.length, [taskList]);
+
   return (
     <div className="main">
       <div className="tasklist">
         <h1>React To-do list</h1>
+        <p>Tarefas pendentes: {numberofTasks}</p>
         <ul>
           {taskList.map((task, i) => (
             <li key={i}>

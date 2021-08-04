@@ -5,7 +5,7 @@ Sintaxe: ``useMemo(() => fn(), [dep])``
 #### 5) Qual a diferença entre o useMemo e o UseCallback?
 A diferença é que useCallback é funciona como uma useMemo especial que **memoiza** Callbacks.
 ```
-//Essas duas linhas de código são equivalentes.
+//Essas duas linhas de código são equivalentes:
 useCallback(callback, [deps]);
 useMemo(() => callback, [deps]);
 
