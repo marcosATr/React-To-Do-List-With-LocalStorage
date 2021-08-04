@@ -53,8 +53,8 @@ body {
   margin: 0;
   cursor: pointer;
 }
-@media screen and (max-width: 450px){
+@media screen and (max-width: 450px) {
   .main {
-    width:95vw
+    width: 95vw;
   }
 }
